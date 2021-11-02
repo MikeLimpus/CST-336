@@ -2,6 +2,7 @@ figure {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 body {
@@ -10,7 +11,8 @@ body {
 }
 
 footer {
-    font-size: .8em
+    font-size: .8em;
+    padding: 15px;
 }
 header, main, nav, footer {
     text-align: center;
