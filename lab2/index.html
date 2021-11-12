@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>US Geography Quiz</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/style.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src ="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" ></script>
+        <script>
+            $(document).ready(function() {
+
+                // Global Variables 
+                var score = 0;
+                var attempts = localStorage.getItem("total_attempts");
+                // Event Listener
+                $("#submit").on("click", gradeQuiz); // click
+                
+                displayQ4Choices();
+                displayQ6Choices();
+
+                function displayQ4Choices() {
+                    let q4ChoicesArray = ["Maine", "Rhode Island", "Maryland", "Delaware"];
+                    q4ChoicesArray = _.shuffle(q4ChoicesArray);
+
+                    for (let i = 0; i < q4ChoicesArray.length; i++) {
+                        $("#q4Choices").append(` <input type="radio" name="q4"
+                            id="${q4ChoicesArray[i]}" value="${q4ChoicesArray[i]}"> <label
+                            for="${q4ChoicesArray[i]}"> ${q4ChoicesArray[i]}</label>`);
+                    }
+                }
+
+                function displayQ6Choices() {
+                    let q6ChoicesArray = ["Seattle", "Spokane", "Tacoma", "Olympia"];
+                    q6ChoicesArray = _.shuffle(q6ChoicesArray);
+
+                    for (let i = 0; i < q6ChoicesArray.length; i++) {
+                        $("#q6Choices").append(` <input type="radio" name="q6"
+                            id="${q6ChoicesArray[i]}" value="${q6ChoicesArray[i]}"> <label
+                            for="${q6ChoicesArray[i]}"> ${q6ChoicesArray[i]}</label>`);
+                    }
+                }
+
+                function isFormValid() {
+                    let isValid = true;
+                    if($("#q1").val() == "") {
+                        isValid = false;
+                        $("#validationFdbk").html(
+                            "Question 1 was not answered");
+                    }
+                    return isValid;
+                } // isFormValid
+
+                function rightAnswer(index) {
+                    $(`#q${index}Feedback`).html("Correct");
+                    $(`#q${index}Feedback`).attr("class", "bg-success text-white");
+                    $(`#markImg${index}`).html("<img src='media/checkmark.png' alt='checkmark'>");
+                    score += 10;
+                }
+
+                function wrongAnswer(index) {
+                    $(`#q${index}Feedback`).html("Incorrect");
+                    $(`#q${index}Feedback`).attr("class", "bg-warning text-white");
+                    $(`#markImg${index}`).html("<img src='media/xmark.png' alt='xmark'>");
+                }
+
+                function gradeQuiz() {
+                    $("#validationFdbk").html(""); // Reset
+                    if (!isFormValid()) {
+                        return;
+                    }
+
+                    // Variables 
+                    score = 0;
+                    let q1Response = $("#q1").val().toLowerCase();
+                    let q2Response = $("#q2").val();
+                    let q4Response = $("input[name=q4]:checked").val();
+                    let q5Response = $("#q5").val();
+                    let q6Response = $("input[name=q6]:checked").val();
+                    let q7Response = $("#q7").val().toLowerCase();
+                    let q8Response = $("#q8").val().toLowerCase();
+                    let q10Response = $("#q10").val().toLowerCase();
+                    // Grading 1 
+                    if (q1Response == "sacramento") {
+                        rightAnswer(1);
+                    }
+                    else {
+                        wrongAnswer(1);
+                    }
+                    // Grading 2 
+                    if (q2Response == "mo") {
+                        rightAnswer(2);
+                    }
+                    else {
+                        wrongAnswer(2);
+                    }
+                    // Grading 3 
+                    if ($("#Jefferson").is(":checked") && $("#Roosevelt").is(":checked") && 
+                        !$("#Jackson").is(":checked") && !$("#Franklin").is(":checked")) {
+                            rightAnswer(3);
+                    }
+                    else {
+                        wrongAnswer(3);
+                    }
+                    // Grading 4 
+                    if(q4Response == "Rhode Island") {
+                        rightAnswer(4);
+                    }
+                    else {
+                        wrongAnswer(4);
+                    }
+                    //Grading 5 
+                    if(q5Response == "den") {
+                        rightAnswer(5);
+                    }
+                    else {
+                        wrongAnswer(5);
+                    }
+                    // Grading 6
+                    if(q6Response == "Olympia") {
+                        rightAnswer(6);
+                    }
+                    else {
+                        wrongAnswer(6);
+                    }
+                    // Grading 7 
+                    if(q7Response == "vermont") {
+                        rightAnswer(7);
+                    }
+                    else {
+                        wrongAnswer(7);
+                    }
+                    // Grading 8
+                    if(q8Response == "detroit") {
+                        rightAnswer(8);
+                    }
+                    else {
+                        wrongAnswer(8);
+                    }
+                    // Grading 9
+                    if ($("#California").is(":checked") && $("#Nevada").is(":checked") && 
+                        !$("#Arizona").is(":checked") && !$("#NewYork").is(":checked")) {
+                            rightAnswer(9);
+                    }
+                    else {
+                        wrongAnswer(9);
+                    }
+                    // Grading 10
+                    if(q10Response == "rio grande") {
+                        rightAnswer(10);
+                    }
+                    else {
+                        wrongAnswer(10);
+                    }
+                    $("#totalScore").html(`Total Score: ${score}`);
+                    /* 1) Display the Total Score message in red if the score is
+                    lower than 80 or in green otherwise. */
+                    if (score < 80) {
+                        $("#totalScore").attr("class", "red");
+                    } 
+                    else {
+                        $("#totalScore").attr("class", "green");
+                        // 2) Display a congratulatory message if the score is above 80 points.
+                        $("#congrats").fadeOut(0);
+                        $("#congrats").html("Congrats! You are an expert of geography.");
+                        $("#congrats").fadeIn(1000);
+                    }
+                    $("#totalAttempts").html(`Total Attempts: ${++attempts}`);
+                    localStorage.setItem("total_attempts", attempts);
+                }
+            }); // ready
+        </script>
+    </head>
+    <body class="text-center">
+        <h1 class="p-3 bg-primary">US Geography Quiz</h1>
+        <h1 id="congrats" class="green"></h1>
+
+        <!-- Question 1 -->
+        <h3><span id="markImg1"></span>What is the capital of California?</h3>
+        <input type="text" id="q1">
+        <br>
+        <div id="q1Feedback"></div>
+        <br>
+
+        <!-- Question 2 -->
+        <h3><span id="markImg2"></span>What is the longest river?</h3>
+        <select id="q2">
+            <option value="">Select One</option>
+            <option value="ms">Mississippi</option>
+            <option value="mo">Missouri</option>
+            <option value="co">Colorado</option>
+            <option value="de">Delaware</option>
+        </select>
+        <br><br>
+        <div id="q2Feedback"></div>
+
+        <!-- Question 3 -->
+        <h3><span id="markImg3"></span>What presidents are carved into Mount Rushmore?</h3>
+        <input type="checkbox" id="Jackson">
+        <label for="Jackson"> A.Jackson </label>
+        <input type="checkbox" id="Franklin"> <label for="Franklin"> B.Franklin </label>
+        <input type="checkbox" id="Jefferson"> <label for="Jefferson"> T. Jefferson </label>
+        <input type="checkbox" id="Roosevelt"> <label for="Roosevelt"> T. Roosevelt </label>
+        <br>
+        <div id="q3Feedback"></div>
+        <br>
+
+        <!-- Question 4 -->
+        <h3><span id="markImg4"></span>What is the smallest US State?</h3>
+        <div id="q4Choices"></div>
+        <div id="q4Feedback"></div>
+        <br>
+
+        <!-- Question 5 -->
+        <h3><span id="markImg5"></span>What is the tallest mountain in the US?</h3>
+        <select id="q5">
+            <option value="">Select One</option>
+            <option value="rain">Rainier</option>
+            <option value="whit">Whitney</option>
+            <option value="den">Denali</option>
+            <option value="san">San Gorgonio</option>
+        </select>
+        <div id="q5Feedback"></div>
+        <br>
+
+        <!-- Question 6 -->
+        <h3><span id="markImg6"></span>What is the capital of Washington?</h3>
+        <div id="q6Choices"></div>
+        <div id="q6Feedback"></div>
+        <br>
+
+        <!-- Question 7 -->
+        <h3><span id="markImg7"></span>Which state is called the Green Mountain State?</h3>
+        <input type="text" id="q7">
+        <br>
+        <div id="q7Feedback"></div>
+        <br>
+
+        <!-- Question 8 -->
+        <h3><span id="markImg8"></span>Which US city looks Southwards into Canada?</h3>
+        <input type="text" id="q8">
+        <br>
+        <div id="q8Feedback"></div>
+        <br>
+
+        <!-- Question 9 -->
+        <h3><span id="markImg9"></span>Which of these states are in the Pacific Time Zone</h3>
+        <input type="checkbox" id="California"><label for="California"> California </label>
+        <input type="checkbox" id="Nevada"> <label for="Nevada"> Nevada </label>
+        <input type="checkbox" id="Arizona"> <label for="Arizona"> Arizona </label>
+        <input type="checkbox" id="NewYork"> <label for="NewYork"> New York </label>
+        <br>
+        <div id="q9Feedback"></div>
+        <br>
+
+        <!-- Question 10 -->
+        <h3><span id="markImg10"></span>What river was designated the U.S.-Mexican border in the Treaty of Guadalupe Hidalgo?</h3>
+        <input type="text" id="q10">
+        <br>
+        <div id="q10Feedback"></div>
+        <br>
+
+        <h3 id="validationFdbk" class="bg-danger text-white"></h3>
+        <button id="submit" type="button" class="btn btn-secondary">Submit Quiz</button>
+        <h2 id="totalScore" class="text-info"></h2>
+        <h3 id="totalAttempts"></h3>
+
+        <footer>Jonathan Limpus CSUMB CS Online | CST336 Lab 2</footer>
+    </body>
+</html>

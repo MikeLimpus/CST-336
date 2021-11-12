@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Sign Up Page</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <!-- <script src="js/script.js"></script> -->
+        <meta name="description" content="text/html">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+    <body>
+        <h1> Sign Up </h1>
+        First Name: <input type="text" name="fName"><br>
+        Last Name:  <input type="text" name="lName"><br>
+        Gender:     <input type="radio" name="gender" value="m"> Male
+                    <input type="radio" name="gender" value="f"> Female<br>
+        Zip Code:   <input type="text" name="zip" id="zip"><br>
+        City:       <span id="city"></span><br>
+        Latitude:   <br>
+        Longitude:  <br><br>
+
+        State: 
+        <select id="state" name="state">
+            <option value="ca">California   </option>
+            <option value="ny">New York     </option>
+            <option value="tx">Texas        </option>
+        </select><br>
+
+        Select a County:    <select id="county"></select><br>
+
+        Desired Username:   <input type="text" id="username" name="username"><br>
+
+        Password:           <input type="password" id="password" name="password"><br>
+        Password Again:     <input type="password" id="passwordAgain">
+
+        <input type="submit" value="Sign up!" id="signup">
+        <script>
+            // Displaying City from API after typing a zip code
+            // The event handler from the lab spec was not working, 
+            // I changed it to a click handler for the sake of my sanity
+            $("#signup").on("click", async function() { 
+                // alert($("#zip").val());
+                let zipCode = $("#zip").val();
+                let url = `https://itcdland.csumb.edu/~milara/ajax/cityInfoByZip?zip=${zipCode}`;
+                let response = await fetch(url);
+                let data = await response.json();
+                console.log(data);
+                console.log("working");
+            });
+        </script>
+    </body>
+</html>
