@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Anime Picker</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/styles.css">
+        <link href="data:image/x-icon;base64,AAABAAEAEBAQAAAAAAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAADAMUAP///wBGBnoAbhG6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEQAAEQAAAAEAEAEAEAAAEAABEAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEQAAABEQABENEAABENEAEMzQAAEMzQARDJAAARDJAAERAAAAERAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA//8AAPPPAADttwAA3nsAAP//AAD//wAA//8AAMfjAACDwQAAg8EAAIPBAADH4wAA//8AAP//AAD//wAA" rel="icon" type="image/x-icon" />
+    </head>
+    <body>
+        <div class="header">
+            Random Anime Picker 
+        </div>
+        <div id="results" class="info"></div>
+        <div id="info" class="infoLarge">
+            Select age rating desired, and optionally, a release year. <br>
+            If left blank, a random year will be chosen.
+            <form>
+                <label for="rating">Rating: </label>
+                <select id="rating" name="rating">
+                    <option id="G">G - General Audiences</option>
+                    <option id="PG">PG - Parental Guidence</option>
+                    <option id="R">R - Restricted</option>
+                </select>
+                <label for="year">Year: </label>
+                <input type="text" id="year" >
+                <button id="submit" class="" type="button">Submit</button>
+            </form>
+        </div>
+        <footer>
+            Mike Limpus | CSUMB CS Online HW3 <br>
+            Powered by <a href="https://kitsu.docs.apiary.io/#">Kitsu API</a>
+        </footer>
+        <!-- JQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="js/script.js"></script>
+    </body>
+</html>
