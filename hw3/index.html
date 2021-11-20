@@ -17,7 +17,7 @@
         <div id="info" class="infoLarge">
             Select age rating desired, and optionally, a release year. <br>
             If left blank, a random year will be chosen.
-            <form>
+            <form id="form" onsubmit="return false">
                 <label for="rating">Rating: </label>
                 <select id="rating" name="rating">
                     <option id="G">G - General Audiences</option>
@@ -26,7 +26,7 @@
                 </select>
                 <label for="year">Year: </label>
                 <input type="text" id="year" >
-                <button id="submit" class="" type="button">Submit</button>
+                <button id="submit">Submit</button>
             </form>
         </div>
         <footer>
