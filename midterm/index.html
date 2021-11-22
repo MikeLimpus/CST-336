@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/styles.css" rel="stylesheet">
+    <title>CST 336 Midterm</title>
+</head>
+<body>
+    <div id="header">
+        Shopping Cart
+    </div>
+    <div id="table">
+        <table>
+            <tr id="table-header">
+                <td>Product</td>
+                <td>Unit Price</td>
+                <td>Quantity</td>
+                <td>Total</td>
+            </tr>
+            <tr class="table-row">
+                <td id="productName">Product Loading...</td>    <!-- This value will be deleted later -->
+                <td id="unitPrice">Loading...</td>
+                <td><input type="text" id="quantity"></td>
+                <td id="productValue">$0</td>
+            </tr>
+            <tr class="table-row">
+                <td>Discount</td>
+                <td></td>
+                <td id="discountPercent"></td>
+                <td id="discountValue"></td>
+            </tr>
+            <tr class="table-row">
+                <td>Shipping</td>
+                <td></td>
+                <td></td>
+                <td id="shippingValue"></td>
+            </tr>
+            <tr class="table-row">
+                <td>Subtotal</td>
+                <td></td>
+                <td></td>
+                <td id="subtotalValue"></td>
+            </tr>
+            <tr class="table-row">
+                <td>Tax</td>
+                <td></td>
+                <td></td>
+                <td id="taxValue"></td>
+            </tr>
+            <tr class="table-row">
+                <td>Total</td>
+                <td></td>
+                <td></td>
+                <td id="totalValue"></td>
+            </tr>
+        </table>
+    </div>
+    <div id="promo" class="pageContent">
+        <label for="promoCode">Promo Code: </label>
+        <input type="text" name="promoCode" id="promoCode">
+        <input type="button" id="applyPromo" value="Apply Promo Code">
+    </div>
+    <div id="promoError" class=error></div>
+    <div id="shipping" class="pageContent">
+        <h2>Shipping and Handling</h2>
+        <select name="shippingOptions" id="shippingOptions">
+        </select>
+    </div>
+
+    <div id="rubric">   
+        <input type="button" id="rubricButton" value="Show/Hide Rubric">
+        <table id="rubricTable" width="600" cellpadding="10px" border="1">
+            <tbody><tr><th>#</th><th>Task Description</th><th>Points</th></tr>
+             <tr style="color:green">
+              <td>1</td>
+              <td>All elements and input types are included (text boxes, button, dropdown) <br></td>
+              <td width="20" align="center">10</td>
+             </tr>     
+             <tr style="color:green">
+              <td>2</td>
+              <td>Right after loading page, a fetch request retrieves all products from the Web API<br>
+                </td>
+              <td width="20" align="center">10</td>
+            </tr>     
+             <tr style="color:green">
+              <td>3</td>
+              <td>A random product along with its price and quantity is prefilled in the cart <br></td>
+              <td width="20" align="center">20</td>
+            </tr>     
+             <tr style="color:green">
+              <td>4</td>
+              <td>When updating the product quantity, all totals are updated properly <br></td>
+              <td width="20" align="center">20</td>
+            </tr>     
+             <tr style="color:green">
+              <td>5</td>
+              <td>When clicking on "Apply Promo Code" a fetch request retrieves the corresponding discount, if any<br></td>
+              <td width="20" align="center">15</td>
+            </tr>
+             <tr style="color:green">
+              <td>6</td>
+              <td>When clicking on "Apply Promo Code", the discount is displayed in the cart and totals updated properly<br></td>
+              <td width="20" align="center">15</td>
+            </tr> 
+                               
+            <tr style="color:green">
+              <td>7</td>
+              <td>When clicking on "Apply Promo Code", an error message in red is displayed if the promo code is not valid <br></td>
+              <td width="20" align="center">15</td>
+            </tr>   
+
+            <tr style="color:green">
+              <td>8</td>
+              <td>When page loads, all shipping methods are displayed in a dropdown menu using the corresponding Web API </td>
+              <td width="20" align="center">20</td>
+            </tr>
+          <tr style="color:green">
+              <td>9</td>
+              <td>When selecting a shipping method, all totals are updated <br></td>
+              <td width="20" align="center">15</td>
+            </tr>    
+            <tr style="color:green">
+              <td>10</td>
+              <td>Page has nice design: content is centered, there is spacing between elements <br></td>
+              <td width="20" align="center">10</td>
+            </tr>
+            <tr style="color:green">
+              <td>11</td>
+              <td>This rubric is properly included AND UPDATED</td>
+              <td width="20" align="center">3</td>
+            </tr>
+                
+             <tr>
+              <td></td>
+              <td>T O T A L </td>
+              <td width="20" align="center">&nbsp;</td>
+            </tr> 
+          </tbody></table>
+    </div>
+    <footer>
+        Mike Limpus | CSUMB CS Online CST 336 Midterm
+    </footer>
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
