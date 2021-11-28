@@ -1,0 +1,47 @@
+<%- include('partials/header.ejs') %> 
+
+<div class="subheader">
+    <h3>GNU/Linux</h3>
+</div>
+<figure>
+    <img src = "../media/tux.jpg">
+</figure>
+<main>
+    <p>
+        Linux is an open-source monolithic kernel developed by Linus Torvalds in 1991 as an open-source
+        kernel alternative to other proprietery kernels. This kernel, when combined with the free and open source
+        GNU userland, is called GNU/Linux. <sub>[1]</sub> Unlike Windows and MacOS, which are developed and released
+        by a single entity, GNU/Linux is developed by many groups and released as distributions, commonly called
+        "distros" by the community<sub>[2]</sub>. Some of these distros are created by companies, such as Ubuntu and Red Hat. 
+        Others are community, volunteer projects like Arch Linux and Debian. Many distros exist because they fit certain 
+        needs of different types of users. For example, Red Hat is offered as a paid service for companies who need on-demand 
+        tech support. <sub>[3]</sub>
+    </p>
+</main>
+<div class="references">
+    <h3>References</h3>
+    <!-- ordered list: new HTML tag -->
+    <ol>
+        <li>
+            <a href="https://www.gnu.org/gnu/linux-and-gnu.en.html">
+                Linux and the GNU System - GNU Project
+            </a>
+        </li>
+        <li>
+            <a href="https://www.pcmag.com/how-to/what-is-gnulinux">
+                What is GNU/Linux? - PC Mag
+            </a>
+        </li>
+        <li>
+            <a href="https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux">
+                What is Red Hat Enterprise Linux? - Red Hat
+            </a>
+        </li>
+    </ol>
+</div>
+<div class="updated">
+    <%= updated %>
+</div>
+<%- include('partials/footer.ejs') %>
+</body>
+</html>
