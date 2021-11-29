@@ -14,7 +14,12 @@ app.get("/", async (req, res) => {
         ORDER BY lastName;
     `;
     let rows = await executeSQL(sql);
-    res.render("index", {"authors": rows});
+    let categoriesSQL = `
+        SELECT DISTINCT category
+        FROM q_quotes;
+    `; 
+    let categories = await executeSQL(categoriesSQL);
+    res.render("index", {"authors": rows, "categories": categories});
 });//root
 
 app.get("/dbTest", async (req, res) => {
@@ -49,9 +54,35 @@ app.get('/searchByAuthor', async (req, res) => {
     `;
     let params = [userAuthorId];
     let rows = await executeSQL(sql, params);
-    res.render("results", {"quotes":rows});
+    res.render("results", {"quotes": rows});
 });
 
+app.get('/searchByCategory', async (req, res) => {
+    let userCategory = req.query.category; 
+    let sql = `
+        SELECT quote, q_quotes.authorId, firstName, lastName 
+        FROM q_quotes, q_authors 
+        WHERE category = ?
+        AND q_quotes.authorId = q_authors.authorId;
+    `;
+    let params = [userCategory];
+    let rows = await executeSQL(sql, params);
+    res.render("results", {"quotes": rows});
+});
+
+app.get('/searchByLikes', async (req, res) => {
+    let lowerLikes = req.query.lowerLikes;
+    let upperLikes = req.query.upperLikes;
+    let sql = `
+        SELECT quote, q_quotes.authorId, firstName, lastName 
+        FROM q_quotes, q_authors
+        WHERE likes > ? AND likes < ?
+        AND q_quotes.authorId = q_authors.authorId;
+    `
+    let params = [lowerLikes, upperLikes];
+    let rows = await executeSQL(sql, params);
+    res.render("results", {"quotes": rows});
+});
 app.get('/api/author/:id', async (req, res) => { 
     let authorId = req.params.id;
     let sql = `
@@ -74,6 +105,6 @@ async function executeSQL(sql, params){
 }
 
 //start server
-app.listen(5602, "10.0.0.136", () => {
+app.listen(30000, "10.0.0.136", () => {
     console.log("Express server running...")
 });

@@ -17,5 +17,23 @@
         </select>
         <button>Search by Author</button>
     </form>
+    <form action="/searchByCategory">
+        <select name="category">
+            <% for (category of categories) { %>
+                <option value="<%=category.category%>">
+                    <%=category.category%>
+                </option>
+            <% } %>
+        </select>
+        <button>Search by Category</button>
+    </form>
+    <form action="/searchByLikes">
+        <br><h4>Search by likes</h4> <br>
+        <label for="lowerLikes">Lower range of likes</label>
+        <input type="text" name="lowerLikes" id="lowerLikes">
+        <label for="upperLikes">Upper range of likes</label>
+        <input type="text" name="upperLikes" id="upperLikes">
+        <button>Search by Likes</button>
+    </form>
     <%- include("partials/footer.ejs") %>
 </body>

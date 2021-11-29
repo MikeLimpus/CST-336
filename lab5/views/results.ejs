@@ -2,14 +2,30 @@
 <body>
     <h1>Quotes Found</h1>
     <% for (i of quotes) { %>
-        <%= i.quote %><br>
-        -<em>
+        <%= i.quote %>
+        <em>
             <a href="#" id="<%=i.authorId%>">
-                <%=i.firstName%> <%=i.lastName%>
+               - <%=i.firstName%> <%=i.lastName%>
             </a>
         </em><br><br>
         <% } %>
-        <div id="authorInfo"></div>
+
+    <div id="authorModal" class="modal" tabindex="-1"> 
+        <div class="modal-dialog">
+        <div class="modal-content" style="background-color: black;"> 
+            <div class="modal-header">
+                <h5 class="modal-title">Author Info</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> </div>
+            <div class="modal-body">
+                <div id="authorInfo"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div> 
+    </div>
+</div>
+       
         <%- include("partials/footer.ejs")%>
         <script src="/js/scripts.js"></script>
 </body>
