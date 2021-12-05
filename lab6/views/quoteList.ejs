@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CRUD Operations</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+</head>
+
+<body class="text-center bg-light">
+    <h1> Update/Delete Quotes </h1>
+    <% for (i=0; i < quotes.length; i++) { %>
+        <a href="/quote/edit?quoteId=<%=quotes[i].quoteId%>">UPDATE</a>
+        <a href="/quote/delete?quoteId=<%=quotes[i].quoteId%>">DELETE</a> <br>
+        <%=quotes[i].quote%>
+            <br> 
+            <%=quotes[i].firstName%>
+            <%=quotes[i].lastName%>
+            <%=quotes[i].likes%> Likes <br> <hr>
+        <% } %>
+</body>
+
+</html>
